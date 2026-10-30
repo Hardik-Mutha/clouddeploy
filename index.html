@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="CloudDeploy: A college cloud computing project demonstrating automated CI/CD static website hosting using GitHub Actions and AWS S3.">
+  <title>CloudDeploy | Cloud-Based Website Hosting & Automated Deployment Using AWS</title>
+  
+  <!-- Modern Google Font: Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ========================================================================
+       1. NAVIGATION BAR
+       Header with logo, navigation links, and mobile menu toggle button
+       ======================================================================== -->
+  <header class="navbar">
+    <div class="container nav-container">
+      <!-- Project Brand Logo -->
+      <a href="#hero" class="logo" aria-label="CloudDeploy Home">
+        <div class="logo-icon">
+          <!-- Cloud SVG Icon -->
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/>
+          </svg>
+        </div>
+        <span>Cloud<span class="logo-badge">Deploy</span></span>
+      </a>
+
+      <!-- Mobile Hamburger Toggle -->
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle Navigation Menu" aria-expanded="false">
+        <div class="hamburger-icon">
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </div>
+      </button>
+
+      <!-- Navigation Links -->
+      <nav>
+        <ul class="nav-links" id="navLinks">
+          <li><a href="#about" class="nav-link">About</a></li>
+          <li><a href="#how-it-works" class="nav-link">How It Works</a></li>
+          <li><a href="#technologies" class="nav-link">Technologies</a></li>
+          <li><a href="#how-it-works" class="nav-link nav-cta">View Pipeline</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- ========================================================================
+         2. HERO SECTION
+         Project Title, Tagline, Primary Action Button & Interactive Terminal
+         ======================================================================== -->
+    <section class="hero" id="hero">
+      <div class="container">
+        <!-- Live Status Pill Badge -->
+        <div class="hero-pill">
+          <span class="status-dot"></span>
+          <span>CI/CD Pipeline: Active & Automated</span>
+        </div>
+
+        <!-- Main Project Title -->
+        <h1 class="hero-title">
+          CloudDeploy: <span class="hero-title-gradient">Cloud-Based Website Hosting & Automated Deployment Using AWS</span>
+        </h1>
+
+        <!-- Short Tagline -->
+        <p class="hero-tagline">
+          A college cloud computing demonstration of modern DevOps practices. Learn how code commits in GitHub seamlessly deploy to a high-availability AWS S3 static website bucket in seconds.
+        </p>
+
+        <!-- Call to Action Buttons -->
+        <div class="hero-actions">
+          <a href="#how-it-works" class="btn btn-primary" id="exploreWorkflowBtn">
+            <span>Explore How It Works</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="m9 18 6-6-6-6"/>
+            </svg>
+          </a>
+          <a href="#about" class="btn btn-secondary">
+            <span>About Project</span>
+          </a>
+        </div>
+
+        <!-- Terminal / Architecture Workflow Simulation Preview -->
+        <div class="hero-preview">
+          <div class="terminal-header">
+            <div class="terminal-dots">
+              <span class="terminal-dot red"></span>
+              <span class="terminal-dot yellow"></span>
+              <span class="terminal-dot green"></span>
+            </div>
+            <span class="terminal-title">pipeline-trigger.sh — bash</span>
+          </div>
+          <div class="terminal-body">
+            <div class="terminal-line">
+              <span class="terminal-prompt">$</span>
+              <span>git commit -m "Update project documentation & styles" &amp;&amp; git push origin main</span>
+            </div>
+            <div class="terminal-line">
+              <span class="terminal-prompt">&gt;</span>
+              <span class="terminal-text-info">GitHub Actions triggered workflow: .github/workflows/deploy.yml</span>
+            </div>
+            <div class="terminal-line">
+              <span class="terminal-prompt">&gt;</span>
+              <span>Configuring AWS Credentials via IAM User secrets...</span>
+            </div>
+            <div class="terminal-line">
+              <span class="terminal-prompt">&gt;</span>
+              <span>Syncing static build assets to s3://clouddeploy-project-bucket/...</span>
+            </div>
+            <div class="terminal-line">
+              <span class="terminal-prompt">&gt;</span>
+              <span class="terminal-text-success">✔ Deploy Succeeded: 4 files uploaded in 2.1s (Status 200 OK)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         3. ABOUT THE PROJECT SECTION
+         Objectives, problem statement, and key project advantages
+         ======================================================================== -->
+    <section class="about" id="about">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Project Background</span>
+          <h2 class="section-title">About the Project</h2>
+          <p class="section-description">
+            Bridging software development and cloud operations with hands-on infrastructure automation.
+          </p>
+        </div>
+
+        <div class="about-grid">
+          <!-- Textual explanation -->
+          <div class="about-text">
+            <p>
+              <strong>CloudDeploy</strong> is an academic cloud engineering project created to demonstrate how modern web applications leverage continuous integration and continuous deployment (CI/CD) pipelines.
+            </p>
+            <p>
+              Traditional website hosting often relies on manual FTP uploads or managing complex web servers. CloudDeploy replaces this error-prone manual procedure with an automated pipeline that deploys directly into <strong>Amazon Web Services (AWS)</strong> upon pushing to <strong>GitHub</strong>.
+            </p>
+            
+            <div class="about-highlights">
+              <div class="highlight-item">
+                <div class="highlight-number">0s</div>
+                <div class="highlight-label">Manual intervention needed per deployment</div>
+              </div>
+              <div class="highlight-item">
+                <div class="highlight-number">99.99%</div>
+                <div class="highlight-label">Designed AWS S3 availability for static hosting</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Architectural Benefits Card -->
+          <div class="architecture-card">
+            <h4>
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent-aws)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="12 2 2 7 12 12 22 7 12 2"/>
+                <polyline points="2 17 12 22 22 17"/>
+                <polyline points="2 12 12 17 22 12"/>
+              </svg>
+              Key Project Objectives
+            </h4>
+            <ul class="architecture-list">
+              <li>
+                <span class="check-icon">✓</span>
+                <span><strong>Serverless Hosting:</strong> Eliminates server maintenance and OS patch management using Amazon S3 bucket website hosting.</span>
+              </li>
+              <li>
+                <span class="check-icon">✓</span>
+                <span><strong>DevOps Automation:</strong> Uses GitHub Actions workflows to validate and sync files immediately when new commits are pushed.</span>
+              </li>
+              <li>
+                <span class="check-icon">✓</span>
+                <span><strong>Secure Access Management:</strong> Enforces least-privilege permissions through dedicated AWS IAM programmatic credentials.</span>
+              </li>
+              <li>
+                <span class="check-icon">✓</span>
+                <span><strong>Cost Efficiency:</strong> Demonstrates high scalability with near-zero idle cost suitable for static college portfolio and web projects.</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         4. HOW IT WORKS (4 STEPS WORKFLOW)
+         Push Code -> GitHub Actions -> AWS S3 -> Website Live
+         ======================================================================== -->
+    <section class="how-it-works" id="how-it-works">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Deployment Pipeline</span>
+          <h2 class="section-title">How It Works</h2>
+          <p class="section-description">
+            A 4-step automated delivery pipeline connecting your code repository to global AWS cloud infrastructure.
+          </p>
+        </div>
+
+        <div class="workflow-grid">
+          <!-- Step 1 -->
+          <div class="workflow-card">
+            <span class="step-badge">1</span>
+            <div class="step-icon">
+              <!-- Git Commit / Push SVG -->
+              <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="18" r="3"/>
+                <circle cx="6" cy="6" r="3"/>
+                <circle cx="18" cy="6" r="3"/>
+                <path d="M18 9v2a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V9"/>
+                <path d="M12 12v3"/>
+              </svg>
+            </div>
+            <h3>Push code to GitHub</h3>
+            <p>
+              The developer authors local changes and runs <code>git push origin main</code>. GitHub receives the commit and triggers repository webhook events.
+            </p>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="workflow-card">
+            <span class="step-badge">2</span>
+            <div class="step-icon">
+              <!-- GitHub Actions Gear / Workflow SVG -->
+              <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect width="8" height="8" x="2" y="2" rx="2"/>
+                <path d="M14 2c1.1 0 2 .9 2 2v4c0 1.1-.9 2-2 2"/>
+                <path d="M20 2c1.1 0 2 .9 2 2v4c0 1.1-.9 2-2 2"/>
+                <rect width="8" height="8" x="14" y="14" rx="2"/>
+                <path d="M6 10v4c0 1.1.9 2 2 2"/>
+                <path d="M6 20c-1.1 0-2-.9-2-2v-4c0-1.1.9-2 2-2"/>
+              </svg>
+            </div>
+            <h3>GitHub Actions runs</h3>
+            <p>
+              A CI/CD runner spins up automatically. It securely checks out the code and authenticates with AWS using repository secrets (Access Keys).
+            </p>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="workflow-card">
+            <span class="step-badge">3</span>
+            <div class="step-icon">
+              <!-- Upload to Cloud / S3 Bucket SVG -->
+              <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242"/>
+                <path d="M12 12v9"/>
+                <path d="m16 16-4-4-4 4"/>
+              </svg>
+            </div>
+            <h3>Files uploaded to AWS S3</h3>
+            <p>
+              The workflow runs the AWS CLI command to synchronize static files (<code>index.html</code>, <code>style.css</code>, assets) to the configured S3 bucket.
+            </p>
+          </div>
+
+          <!-- Step 4 -->
+          <div class="workflow-card">
+            <span class="step-badge">4</span>
+            <div class="step-icon">
+              <!-- Globe / Live Website SVG -->
+              <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/>
+                <line x1="2" x2="22" y1="12" y2="12"/>
+                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+              </svg>
+            </div>
+            <h3>Website is live</h3>
+            <p>
+              The website is updated and immediately reachable worldwide via the AWS S3 static website hosting endpoint with zero manual intervention.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         5. TECHNOLOGIES USED SECTION
+         Cards for: AWS S3, AWS IAM, GitHub, GitHub Actions
+         ======================================================================== -->
+    <section class="technologies" id="technologies">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Tech Stack</span>
+          <h2 class="section-title">Technologies Used</h2>
+          <p class="section-description">
+            Industry-standard tools and cloud services powering this deployment demonstration.
+          </p>
+        </div>
+
+        <div class="tech-grid">
+          <!-- Card 1: AWS S3 -->
+          <div class="tech-card">
+            <div class="tech-header">
+              <div class="tech-icon-box s3">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+                  <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
+                  <line x1="12" y1="22.08" x2="12" y2="12"/>
+                </svg>
+              </div>
+              <div class="tech-title-group">
+                <h3>AWS S3</h3>
+                <span class="tech-role">Cloud Storage &amp; Web Hosting</span>
+              </div>
+            </div>
+            <p class="tech-description">
+              Amazon Simple Storage Service provides secure, scalable object storage configured with static website hosting mode to serve HTML, CSS, and client-side JavaScript globally.
+            </p>
+            <div class="tech-tags">
+              <span class="tech-tag">Object Storage</span>
+              <span class="tech-tag">Static Hosting</span>
+              <span class="tech-tag">High Durability</span>
+            </div>
+          </div>
+
+          <!-- Card 2: AWS IAM -->
+          <div class="tech-card">
+            <div class="tech-header">
+              <div class="tech-icon-box iam">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect width="18" height="11" x="3" y="11" rx="2" ry="2"/>
+                  <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                </svg>
+              </div>
+              <div class="tech-title-group">
+                <h3>AWS IAM</h3>
+                <span class="tech-role">Identity &amp; Access Management</span>
+              </div>
+            </div>
+            <p class="tech-description">
+              Enforces least-privilege security by creating a dedicated deployment service user with scoped permissions strictly restricted to uploading files into the designated S3 bucket.
+            </p>
+            <div class="tech-tags">
+              <span class="tech-tag">Least Privilege</span>
+              <span class="tech-tag">Access Keys</span>
+              <span class="tech-tag">Cloud Security</span>
+            </div>
+          </div>
+
+          <!-- Card 3: GitHub -->
+          <div class="tech-card">
+            <div class="tech-header">
+              <div class="tech-icon-box github">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+                </svg>
+              </div>
+              <div class="tech-title-group">
+                <h3>GitHub</h3>
+                <span class="tech-role">Version Control &amp; Collaboration</span>
+              </div>
+            </div>
+            <p class="tech-description">
+              Serves as the single source of truth for the codebase, handling branch management, code review, commit history, and encrypted storage of repository deployment secrets.
+            </p>
+            <div class="tech-tags">
+              <span class="tech-tag">Git Repository</span>
+              <span class="tech-tag">Encrypted Secrets</span>
+              <span class="tech-tag">Version Control</span>
+            </div>
+          </div>
+
+          <!-- Card 4: GitHub Actions -->
+          <div class="tech-card">
+            <div class="tech-header">
+              <div class="tech-icon-box actions">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 2v4"/>
+                  <path d="M12 18v4"/>
+                  <path d="m4.93 4.93 2.83 2.83"/>
+                  <path d="m16.24 16.24 2.83 2.83"/>
+                  <path d="M2 12h4"/>
+                  <path d="M18 12h4"/>
+                  <path d="m4.93 19.07 2.83-2.83"/>
+                  <path d="m16.24 7.76 2.83-2.83"/>
+                </svg>
+              </div>
+              <div class="tech-title-group">
+                <h3>GitHub Actions</h3>
+                <span class="tech-role">CI/CD Pipeline Automation</span>
+              </div>
+            </div>
+            <p class="tech-description">
+              Executes workflow automation on every push event to build and publish the site. Automatically triggers AWS CLI commands in an isolated Linux container runner.
+            </p>
+            <div class="tech-tags">
+              <span class="tech-tag">Continuous Delivery</span>
+              <span class="tech-tag">Automated Sync</span>
+              <span class="tech-tag">YAML Workflows</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ========================================================================
+       6. FOOTER SECTION
+       Exact requirement: Hosted on AWS S3 | Deployed automatically with GitHub Actions
+       ======================================================================== -->
+  <footer class="footer">
+    <div class="container">
+      <p class="footer-quote">
+        Hosted on <span class="footer-highlight">AWS S3</span> | Deployed automatically with <span class="footer-highlight">GitHub Actions</span>
+      </p>
+      <p class="footer-sub">
+        College Project: Cloud-Based Website Hosting &amp; Automated Deployment Using AWS
+      </p>
+    </div>
+  </footer>
+
+  <!-- Link to Plain JavaScript File -->
+  <script src="script.js"></script>
+</body>
+</html>
